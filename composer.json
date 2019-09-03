@@ -13,7 +13,8 @@
         "symfony/yaml": "4.3.*"
     },
     "require-dev": {
-        "friends-of-behat/symfony-extension": "^2.0"
+        "friends-of-behat/symfony-extension": "^2.0",
+        "phpspec/phpspec": "^5.1"
     },
     "config": {
         "preferred-install": {
