@@ -1,8 +1,10 @@
 default:
     suites:
-        default:
+        product_application:
             contexts:
-                - App\Tests\Behat\DemoContext
+                - App\Tests\Behat\Application\ProductContext
+            filters:
+                tags: "@product_catalog && @application"
 
     extensions:
         FriendsOfBehat\SymfonyExtension: null
