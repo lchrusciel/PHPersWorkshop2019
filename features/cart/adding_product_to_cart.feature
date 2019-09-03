@@ -5,7 +5,6 @@ Feature: Adding a product to a cart
 
   Background:
     Given there is a "PHP Mug" product that costs 100.00 USD
-    And I am a "john@doe.com" customer
 
   Scenario: Adding single product to the cart
     When I add the "PHP Mug" product to my cart

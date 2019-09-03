@@ -5,7 +5,6 @@ Feature: Changing the product quantity
 
   Background:
     Given there is a "PHP Mug" product that costs 100.00 USD
-    And I am a "john@doe.com" customer
     And I have the "PHP Mug" product in my cart
 
   Scenario: Adding more items to the cart
