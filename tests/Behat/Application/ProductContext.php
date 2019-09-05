@@ -6,7 +6,6 @@ namespace App\Tests\Behat\Application;
 
 use App\Entity\Product;
 use App\Repository\ProductRepository;
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Doctrine\Common\Persistence\ObjectManager;
 use Webmozart\Assert\Assert;
