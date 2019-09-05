@@ -19,7 +19,7 @@ default:
                 - App\Tests\Behat\Hook\OrmContext
 
                 - App\Tests\Behat\Application\CartContext
-                - App\Tests\Behat\Application\ProductContext
+                - App\Tests\Behat\Setup\ProductContext
 
                 - App\Tests\Behat\Transformer\PriceContext
                 - App\Tests\Behat\Transformer\ProductContext

@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Tests\Behat\Application;
 
-use App\Entity\Product;
 use App\Factory\ProductFactory;
 use App\Repository\ProductRepository;
 use Behat\Behat\Context\Context;
@@ -35,7 +34,6 @@ final class ProductContext implements Context
 
     /**
      * @When I add a :name product that costs :price USD
-     * @Given there is a :name product that costs :price USD
      */
     public function iAddAProductThatCostsUsd(string $name, int $price): void
     {
