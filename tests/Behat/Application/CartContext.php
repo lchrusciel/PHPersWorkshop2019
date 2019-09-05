@@ -6,6 +6,7 @@ namespace App\Tests\Behat\Application;
 
 use App\Entity\Cart;
 use App\Entity\Item;
+use App\Entity\Product;
 use App\Repository\CartRepository;
 use App\Repository\ProductRepository;
 use Behat\Behat\Tester\Exception\PendingException;
@@ -36,11 +37,10 @@ final class CartContext implements Context
     }
 
     /**
-     * @When I add the :name product to my cart
+     * @When I add the :product product to my cart
      */
-    public function iAddTheProductToMyCart(string $name): void
+    public function iAddTheProductToMyCart(Product $product): void
     {
-        $product = $this->productRepository->findOneBy(['name' => $name]);
         $cart = new Cart('MY_CODE');
 
         $cart->addItem(new Item($product->getName(), $product->getPrice()));
@@ -50,14 +50,14 @@ final class CartContext implements Context
     }
 
     /**
-     * @Then my cart should have :productName product inside
+     * @Then my cart should have :product product inside
      */
-    public function myCartShouldHaveProductInside(string $productName): void
+    public function myCartShouldHaveProductInside(Product $product): void
     {
         $cart = $this->cartRepository->findOneBy(['code' => 'MY_CODE']);
 
         foreach ($cart->getItems() as $item) {
-            if ($item->getProductName() === $productName) {
+            if ($item->getProductName() === $product->getName()) {
                 return;
             }
         }

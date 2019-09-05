@@ -13,6 +13,8 @@ default:
 
                 - App\Tests\Behat\Application\CartContext
                 - App\Tests\Behat\Application\ProductContext
+
+                - App\Tests\Behat\Transformer\ProductContext
             filters:
                 tags: "@cart && @application"
 
