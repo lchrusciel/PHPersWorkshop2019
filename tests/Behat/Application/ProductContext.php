@@ -31,10 +31,8 @@ final class ProductContext implements Context
      * @When I add a :name product that costs :price USD
      * @Given there is a :name product that costs :price USD
      */
-    public function iAddAProductThatCostsUsd(string $name, float $price): void
+    public function iAddAProductThatCostsUsd(string $name, int $price): void
     {
-        $price = (int) $price * 100;
-
         $product = new Product($name, $price);
 
         $this->manager->persist($product);

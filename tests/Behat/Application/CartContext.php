@@ -66,13 +66,13 @@ final class CartContext implements Context
     }
 
     /**
-     * @Then my cart total should be :total USD
+     * @Then my cart total should be :price USD
      */
-    public function myCartTotalShouldBeUsd(float $total): void
+    public function myCartTotalShouldBeUsd(int $price): void
     {
         /** @var Cart $cart */
         $cart = $this->cartRepository->findOneBy(['code' => 'MY_CODE']);
 
-        Assert::same((int) $total * 100, $cart->getTotal());
+        Assert::same($price, $cart->getTotal());
     }
 }
