@@ -1,3 +1,4 @@
+@cart
 Feature: Adding a product to a cart
   In order to acquire merchandise
   As a Customer
@@ -6,6 +7,7 @@ Feature: Adding a product to a cart
   Background:
     Given there is a "PHP Mug" product that costs 100.00 USD
 
+  @application
   Scenario: Adding single product to the cart
     When I add the "PHP Mug" product to my cart
     Then my cart should have "PHP Mug" product inside

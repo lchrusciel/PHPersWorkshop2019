@@ -7,6 +7,14 @@ default:
                 - App\Tests\Behat\Application\ProductContext
             filters:
                 tags: "@product_catalog && @application"
+        cart_application:
+            contexts:
+                - App\Tests\Behat\Hook\OrmContext
+
+                - App\Tests\Behat\Application\CartContext
+                - App\Tests\Behat\Application\ProductContext
+            filters:
+                tags: "@cart && @application"
 
     extensions:
         FriendsOfBehat\SymfonyExtension: null
