@@ -7,6 +7,7 @@ namespace App\Tests\Behat\Application;
 use App\Entity\Cart;
 use App\Entity\Item;
 use App\Entity\Product;
+use App\Handler\CartHandler;
 use App\Repository\CartRepository;
 use App\Repository\ProductRepository;
 use Behat\Behat\Tester\Exception\PendingException;
@@ -28,12 +29,21 @@ final class CartContext implements Context
      * @var ObjectManager
      */
     private $manager;
+    /**
+     * @var CartHandler
+     */
+    private $cartHandler;
 
-    public function __construct(ProductRepository $productRepository, CartRepository $cartRepository, ObjectManager $manager)
-    {
+    public function __construct(
+        ProductRepository $productRepository,
+        CartRepository $cartRepository,
+        ObjectManager $manager,
+        CartHandler $cartHandler
+    )  {
         $this->productRepository = $productRepository;
         $this->cartRepository = $cartRepository;
         $this->manager = $manager;
+        $this->cartHandler = $cartHandler;
     }
 
     /**
@@ -43,7 +53,7 @@ final class CartContext implements Context
     {
         $cart = new Cart('MY_CODE');
 
-        $cart->addItem(new Item($product->getName(), $product->getPrice()));
+        $this->cartHandler->addToCart($cart, $product);
 
         $this->manager->persist($cart);
         $this->manager->flush();
