@@ -72,6 +72,6 @@ class Cart
     {
         return array_reduce($this->items->toArray(), function ($previous, Item $item): int {
             return $previous + $item->getPrice();
-        });
+        }) ?? 0;
     }
 }
