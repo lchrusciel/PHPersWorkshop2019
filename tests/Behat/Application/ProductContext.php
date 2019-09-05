@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Behat\Application;
 
 use App\Entity\Product;
+use App\Factory\ProductFactory;
 use App\Repository\ProductRepository;
 use Behat\Behat\Context\Context;
 use Doctrine\Common\Persistence\ObjectManager;
@@ -20,11 +21,16 @@ final class ProductContext implements Context
      * @var ProductRepository
      */
     private $productRepository;
+    /**
+     * @var ProductFactory
+     */
+    private $productFactory;
 
-    public function __construct(ObjectManager $manager, ProductRepository $productRepository)
+    public function __construct(ObjectManager $manager, ProductRepository $productRepository, ProductFactory $productFactory)
     {
         $this->manager = $manager;
         $this->productRepository = $productRepository;
+        $this->productFactory = $productFactory;
     }
 
     /**
@@ -33,9 +39,7 @@ final class ProductContext implements Context
      */
     public function iAddAProductThatCostsUsd(string $name, int $price): void
     {
-        $product = new Product($name, $price);
-
-        $this->manager->persist($product);
+        $this->manager->persist($this->productFactory->create($name, $price));
         $this->manager->flush();
     }
 
