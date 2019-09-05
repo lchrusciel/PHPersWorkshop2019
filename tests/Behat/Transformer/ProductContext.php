@@ -23,6 +23,7 @@ final class ProductContext implements Context
 
     /**
      * @Transform :product
+     * @Transform /^"([^"]+)" product$/
      */
     public function getOneByName(string $productName): Product
     {

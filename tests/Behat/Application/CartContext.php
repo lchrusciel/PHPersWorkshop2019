@@ -37,7 +37,7 @@ final class CartContext implements Context
     }
 
     /**
-     * @When I add the :product product to my cart
+     * @When /^I add the ("[^"]+" product) to my cart$/
      */
     public function iAddTheProductToMyCart(Product $product): void
     {
