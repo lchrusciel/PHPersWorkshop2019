@@ -5,22 +5,16 @@ declare(strict_types=1);
 namespace App\Tests\Behat\Application;
 
 use App\Entity\Cart;
-use App\Entity\Item;
 use App\Entity\Product;
 use App\Handler\CartHandler;
+use App\Provider\CartProvider;
 use App\Repository\CartRepository;
-use App\Repository\ProductRepository;
-use Behat\Behat\Tester\Exception\PendingException;
 use Behat\Behat\Context\Context;
 use Doctrine\Common\Persistence\ObjectManager;
 use Webmozart\Assert\Assert;
 
 final class CartContext implements Context
 {
-    /**
-     * @var ProductRepository
-     */
-    private $productRepository;
     /**
      * @var CartRepository
      */
@@ -33,17 +27,21 @@ final class CartContext implements Context
      * @var CartHandler
      */
     private $cartHandler;
+    /**
+     * @var CartProvider
+     */
+    private $cartProvider;
 
     public function __construct(
-        ProductRepository $productRepository,
         CartRepository $cartRepository,
         ObjectManager $manager,
-        CartHandler $cartHandler
+        CartHandler $cartHandler,
+        CartProvider $cartProvider
     )  {
-        $this->productRepository = $productRepository;
         $this->cartRepository = $cartRepository;
         $this->manager = $manager;
         $this->cartHandler = $cartHandler;
+        $this->cartProvider = $cartProvider;
     }
 
     /**
@@ -51,7 +49,7 @@ final class CartContext implements Context
      */
     public function iAddTheProductToMyCart(Product $product): void
     {
-        $cart = new Cart('MY_CODE');
+        $cart = $this->cartProvider->provideCart('MY_CODE');
 
         $this->cartHandler->addToCart($cart, $product);
 
